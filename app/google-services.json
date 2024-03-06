@@ -1,0 +1,138 @@
+{
+  "project_info": {
+    "project_number": "592028361654",
+    "firebase_url": "https://wallpei-default-rtdb.firebaseio.com",
+    "project_id": "wallpei",
+    "storage_bucket": "wallpei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592028361654:android:f2a023f64c9fbfbd601717",
+        "android_client_info": {
+          "package_name": "com.superbeta.emi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592028361654-301um3unm8gcue6ld87reguu0co8n6gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPpdYS5ChpnRikqH--xrCY_sI5cA_GoBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592028361654-301um3unm8gcue6ld87reguu0co8n6gd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592028361654:android:37ef5bcb53d6cbfa601717",
+        "android_client_info": {
+          "package_name": "com.superbeta.uploadwallbyte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592028361654-rvhrnr3tb7bqtfi7ffi0mp850ujur368.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.superbeta.uploadwallbyte",
+            "certificate_hash": "e8a69afbc90bae6e0f2ef8e45c31bdc5c7a4817d"
+          }
+        },
+        {
+          "client_id": "592028361654-301um3unm8gcue6ld87reguu0co8n6gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPpdYS5ChpnRikqH--xrCY_sI5cA_GoBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592028361654-301um3unm8gcue6ld87reguu0co8n6gd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592028361654:android:82523627773a736c601717",
+        "android_client_info": {
+          "package_name": "com.superbeta.wallbyte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592028361654-4vqgopc4ejd919l06krduupk319nsu1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.superbeta.wallbyte",
+            "certificate_hash": "2a2a9db49231e6f79cfece091071b1a640f64e48"
+          }
+        },
+        {
+          "client_id": "592028361654-8q3qm14vqpqfqdfvkcd92bsvh6fdpduf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.superbeta.wallbyte",
+            "certificate_hash": "e8a69afbc90bae6e0f2ef8e45c31bdc5c7a4817d"
+          }
+        },
+        {
+          "client_id": "592028361654-bv37rcb3k7010lkue6g02s461jeiiskp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.superbeta.wallbyte",
+            "certificate_hash": "50d3ca5b2bc74d568d1b19bc4bd441240902cf0b"
+          }
+        },
+        {
+          "client_id": "592028361654-jmm31e6madi8llsc79rn90sl5ktvmbqg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.superbeta.wallbyte",
+            "certificate_hash": "9a2c3ec7e1565fc7237546c404d68caedc776f2b"
+          }
+        },
+        {
+          "client_id": "592028361654-301um3unm8gcue6ld87reguu0co8n6gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPpdYS5ChpnRikqH--xrCY_sI5cA_GoBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592028361654-301um3unm8gcue6ld87reguu0co8n6gd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

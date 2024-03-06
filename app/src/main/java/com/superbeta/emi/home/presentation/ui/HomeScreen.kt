@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun HomeScreen(onNavigateToWallpaperFullscreen: () -> Unit) {
     val configuration = LocalConfiguration.current
-
     val screenHeight = configuration.screenHeightDp.dp
 
     Scaffold(

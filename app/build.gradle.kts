@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.google.services)
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -71,5 +72,16 @@ dependencies {
     implementation(libs.firebase.database)
 //navigation
     implementation(libs.navigation.compose)
+//supabase
+    implementation(platform("io.github.jan-tennert.supabase:bom:2.2.2"))
+    implementation("io.github.jan-tennert.supabase:postgrest-kt")
+    implementation("io.github.jan-tennert.supabase:realtime-kt")
+    implementation("io.github.jan-tennert.supabase:gotrue-kt")
+    implementation("io.ktor:ktor-client-android:2.3.9")
 
+//gson
+    implementation("com.google.code.gson:gson:2.10.1")
+
+//coil
+    implementation("io.coil-kt:coil:2.6.0")
 }

@@ -25,8 +25,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.superbeta.emi.AndroidDownloader
-import com.superbeta.emi.SupabaseInstance.supabase
+import com.superbeta.emi.fullscreen.repo.downloader.AndroidDownloader
+import com.superbeta.emi.utils.SupabaseInstance.supabase
 import com.superbeta.emi.home.data.WallpaperDataModel
 import io.github.jan.supabase.exceptions.NotFoundRestException
 import io.github.jan.supabase.postgrest.from

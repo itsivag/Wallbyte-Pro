@@ -1,9 +1,8 @@
-package com.superbeta.emi
+package com.superbeta.emi.fullscreen.repo.downloader
 
 import android.app.DownloadManager
 import android.content.Context
 import android.os.Environment
-import android.util.Log
 import androidx.core.net.toUri
 
 class AndroidDownloader(

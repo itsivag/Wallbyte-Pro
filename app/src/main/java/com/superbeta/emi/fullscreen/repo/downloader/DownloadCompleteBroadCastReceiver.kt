@@ -1,4 +1,4 @@
-package com.superbeta.emi
+package com.superbeta.emi.fullscreen.repo.downloader
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver

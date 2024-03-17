@@ -1,4 +1,4 @@
-package com.superbeta.emi
+package com.superbeta.emi.utils
 
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth

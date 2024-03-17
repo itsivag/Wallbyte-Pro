@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.google.services)
     kotlin("plugin.serialization") version "1.9.0"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -85,4 +86,12 @@ dependencies {
 
 //coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+//room
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+
 }

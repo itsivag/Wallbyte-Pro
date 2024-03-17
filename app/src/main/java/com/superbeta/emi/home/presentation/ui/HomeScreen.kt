@@ -28,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.superbeta.emi.SupabaseInstance.supabase
+import com.superbeta.emi.utils.SupabaseInstance.supabase
 import com.superbeta.emi.home.data.WallpaperDataModel
+import com.superbeta.emi.home.data.local.WallpaperLocalDbService
+import com.superbeta.emi.utils.RoomInstance
 import io.github.jan.supabase.exceptions.HttpRequestException
 import io.github.jan.supabase.exceptions.NotFoundRestException
 import io.github.jan.supabase.postgrest.from
@@ -41,6 +43,8 @@ import kotlinx.coroutines.withContext
 fun HomeScreen(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp
+    val context = LocalContext.current
+    val db = WallpaperLocalDbService(RoomInstance.getDb(context = context))
 
     var wallpapers by remember {
         mutableStateOf<List<WallpaperDataModel>>(listOf())
@@ -54,6 +58,7 @@ fun HomeScreen(navController: NavController) {
         withContext(Dispatchers.IO) {
             try {
                 wallpapers =
+//                    db.getWallpapersFromDb()
                     supabase.from("wallpaper").select().decodeList<WallpaperDataModel>()
             } catch (e: NotFoundRestException) {
                 Log.e("itsivag", e.toString())
@@ -61,6 +66,7 @@ fun HomeScreen(navController: NavController) {
                 Log.e("itsivag", e.toString())
                 isInternetConnected = false;
             }
+            db.saveWallpapersToDb(wallpapers)
         }
     }
 
@@ -104,11 +110,6 @@ fun HomeScreen(navController: NavController) {
             Text(text = "No Internet")
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun WallpaperList() {
 
 
 }

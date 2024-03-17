@@ -3,9 +3,11 @@ package com.superbeta.emi.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.superbeta.emi.fullscreen.ui.WallpaperFullScreen
 import com.superbeta.emi.home.presentation.ui.HomeScreen
 
@@ -21,10 +23,18 @@ fun EmiNavHost(
         startDestination = startDestination
     ) {
         composable("home") {
-            HomeScreen { navController.navigate("wallpaperFullscreen") }
+            HomeScreen(navController)
         }
-        composable("wallpaperFullscreen") {
-            WallpaperFullScreen(navController)
+        composable(
+            "wallpaperFullscreen/{wallpaperId}",
+            arguments = listOf(navArgument("wallpaperId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            backStackEntry.arguments?.let {
+                WallpaperFullScreen(
+                    navController,
+                    it.getInt("wallpaperId")
+                )
+            }
         }
     }
 }

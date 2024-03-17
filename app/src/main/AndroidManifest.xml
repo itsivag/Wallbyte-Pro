@@ -24,6 +24,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".WallpaperDownloadService"
+            android:exported="false" />
+        <receiver
+            android:name=".DownloadCompleteBroadCastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

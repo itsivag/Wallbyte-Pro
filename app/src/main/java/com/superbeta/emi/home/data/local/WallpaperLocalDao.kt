@@ -9,8 +9,8 @@ import com.superbeta.emi.home.data.WallpaperDataModel
 @Dao
 interface WallpaperLocalDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveWallpapersToDb(wallpapersList: List<WallpaperDataModel>)
+    suspend fun saveWallpapersToDb(wallpapersList: List<WallpaperDataModel>)
 
     @Query("SELECT * FROM wallpaper")
-    fun getWallpapersFromDb(): List<WallpaperDataModel>
+    suspend fun getWallpapersFromDb(): List<WallpaperDataModel>
 }

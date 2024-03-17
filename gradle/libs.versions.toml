@@ -12,6 +12,7 @@ firebase-bom = "32.7.3"
 google-services = "4.4.1"
 navigationCompose = "2.7.7"
 supabase-bom = "2.2.2"
+lifecycleRuntimeCompose = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,7 @@ firebase-database = { group = "com.google.firebase", name = "firebase-database" 
 
 #navigation
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 
 
 [plugins]

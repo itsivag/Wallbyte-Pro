@@ -6,11 +6,11 @@ import com.superbeta.emi.utils.RoomInstance
 
 class WallpaperLocalDbService(private val db: WallpaperDatabase) : WallpaperLocalDao {
 
-    override fun saveWallpapersToDb(wallpapersList: List<WallpaperDataModel>) =
+    override suspend fun saveWallpapersToDb(wallpapersList: List<WallpaperDataModel>) =
         db.wallpaperDao().saveWallpapersToDb(wallpapersList)
 
 
-    override fun getWallpapersFromDb(): List<WallpaperDataModel> =
+    override suspend fun getWallpapersFromDb(): List<WallpaperDataModel> =
         db.wallpaperDao().getWallpapersFromDb()
 
 }

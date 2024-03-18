@@ -4,6 +4,7 @@ import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 
 class DownloadCompleteBroadCastReceiver : BroadcastReceiver() {
@@ -19,5 +20,20 @@ class DownloadCompleteBroadCastReceiver : BroadcastReceiver() {
                 Toast.makeText(context, "Download Complete", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun getDownloadUri(context: Context, downloadId: Long): Uri? {
+        val query = DownloadManager.Query().apply {
+            setFilterById(downloadId)
+        }
+        val cursor = downloadManager.query(query)
+        if (cursor.moveToFirst()) {
+            val uriIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
+            val uriString = cursor.getString(uriIndex)
+            cursor.close()
+            return Uri.parse(uriString)
+        }
+        cursor.close()
+        return null
     }
 }

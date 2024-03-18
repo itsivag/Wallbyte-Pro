@@ -9,7 +9,7 @@ class AndroidDownloader(
     private val context: Context
 ) : Downloader {
 
-    private val downloadManager = context.getSystemService(DownloadManager::class.java)
+    val downloadManager = context.getSystemService(DownloadManager::class.java)
     override fun downloadFile(url: String, wallpaperName: String): Long {
         val req = DownloadManager.Request(url.toUri()).setMimeType("image/*")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION)

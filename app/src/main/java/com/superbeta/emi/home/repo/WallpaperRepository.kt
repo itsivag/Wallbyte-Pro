@@ -1,6 +1,6 @@
 package com.superbeta.emi.home.repo
 
-import com.superbeta.emi.home.data.WallpaperDataModel
+import com.superbeta.emi.models.WallpaperDataModel
 
 interface WallpaperRepository {
 

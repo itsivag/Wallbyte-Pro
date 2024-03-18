@@ -1,7 +1,6 @@
 package com.superbeta.emi.home.repo
 
-import com.superbeta.emi.home.data.WallpaperDataModel
-import com.superbeta.emi.home.data.local.WallpaperDatabase
+import com.superbeta.emi.models.WallpaperDataModel
 import com.superbeta.emi.home.data.local.WallpaperLocalDao
 import com.superbeta.emi.home.data.remote.WallpaperRemoteDao
 

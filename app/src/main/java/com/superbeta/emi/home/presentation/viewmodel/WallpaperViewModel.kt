@@ -4,11 +4,9 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.superbeta.emi.home.data.WallpaperDataModel
-import com.superbeta.emi.home.data.local.WallpaperDatabase
+import com.superbeta.emi.models.WallpaperDataModel
 import com.superbeta.emi.home.data.local.WallpaperLocalDbService
 import com.superbeta.emi.home.data.remote.WallpaperRemoteDbService
 import com.superbeta.emi.home.repo.WallpaperRepository
@@ -35,8 +33,17 @@ class WallpaperViewModel(
         }
     }
 
-    companion object {
 
+    private suspend fun getWallpapers() {
+        _wallpaperState.value = wallpaperRepository.getWallpapers()
+        if (_wallpaperState.value.isNotEmpty()) {
+            _uiState.value = UiState.Success
+        } else if (_wallpaperState.value.isEmpty()) {
+            _uiState.value = UiState.Error("error")
+        }
+    }
+
+    companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(
@@ -52,15 +59,6 @@ class WallpaperViewModel(
                     wallpaperRepository
                 ) as T
             }
-        }
-    }
-
-    private suspend fun getWallpapers() {
-        _wallpaperState.value = wallpaperRepository.getWallpapers()
-        if (_wallpaperState.value.isNotEmpty()) {
-            _uiState.value = UiState.Success
-        } else if (_wallpaperState.value.isEmpty()) {
-            _uiState.value = UiState.Error("error")
         }
     }
 

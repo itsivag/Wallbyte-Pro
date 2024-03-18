@@ -1,6 +1,7 @@
-package com.superbeta.emi.home.data
+package com.superbeta.emi.models
 
 
+import androidx.annotation.Keep
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.room.ColumnInfo
@@ -9,6 +10,7 @@ import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Keep
 @Entity(tableName = "wallpaper")
 @Immutable
 @Stable

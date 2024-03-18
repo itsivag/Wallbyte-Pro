@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.superbeta.emi.home.data.WallpaperDataModel
+import com.superbeta.emi.models.WallpaperDataModel
 
 @Dao
 interface WallpaperLocalDao {

@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.superbeta.emi.fullscreen.ui.WallpaperFullScreen
+import com.superbeta.emi.fullscreen.presentation.ui.WallpaperFullScreen
 import com.superbeta.emi.home.presentation.ui.HomeScreen
 
 @Composable

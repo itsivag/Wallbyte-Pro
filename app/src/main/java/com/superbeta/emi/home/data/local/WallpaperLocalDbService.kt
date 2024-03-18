@@ -1,10 +1,9 @@
 package com.superbeta.emi.home.data.local
 
-import androidx.room.Room
-import com.superbeta.emi.home.data.WallpaperDataModel
-import com.superbeta.emi.utils.RoomInstance
+import com.superbeta.emi.models.WallpaperDataModel
+import com.superbeta.emi.utils.EmiDatabase
 
-class WallpaperLocalDbService(private val db: WallpaperDatabase) : WallpaperLocalDao {
+class WallpaperLocalDbService(private val db: EmiDatabase) : WallpaperLocalDao {
 
     override suspend fun saveWallpapersToDb(wallpapersList: List<WallpaperDataModel>) =
         db.wallpaperDao().saveWallpapersToDb(wallpapersList)

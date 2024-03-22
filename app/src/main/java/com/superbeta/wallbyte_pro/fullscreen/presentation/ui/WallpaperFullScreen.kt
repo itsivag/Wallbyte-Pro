@@ -28,7 +28,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.superbeta.wallbyte_pro.fullscreen.presentation.viewmodel.FullScreenViewModel
-import com.superbeta.wallbyte_pro.fullscreen.repo.downloader.AndroidDownloader
+import com.superbeta.wallbyte_pro.fullscreen.repo.download.AndroidDownloader
 import com.superbeta.wallbyte_pro.models.WallpaperDataModel
 import io.github.jan.supabase.exceptions.NotFoundRestException
 import kotlinx.coroutines.CoroutineScope
@@ -94,18 +94,26 @@ fun WallpaperFullScreen(
                     })
 
                 Row {
-                    Button(onClick = {
+//                    Button(onClick = {
+//                        CoroutineScope(IO).launch {
+//                            val wallpaperManager = WallpaperManager.getInstance(context)
+//                            if (wallpaperManager.isWallpaperSupported && wallpaperManager.isSetWallpaperAllowed) {
+//                                wallpaper?.wallpaperName?.let {
+//                                    wallpaper?.wallpaperUrl?.let { it1 ->
+//                                        downloader.setWallpaper(
+//                                            it1,
+//                                            it
+//                                        )
+//                                    }
+//                                }
+//                            }
+////                                    wallpaperManager.getCropAndSetWallpaperIntent(bitmap)
+////                                    wallpaperManager.setBitmap(bitmap)
+//                        }
+//                    }) {
+//                        Text(text = "Set Wallpaper")
+//                    }
 
-                        CoroutineScope(IO).launch {
-                            val wallpaperManager = WallpaperManager.getInstance(context)
-                            if (wallpaperManager.isWallpaperSupported && wallpaperManager.isSetWallpaperAllowed) {
-//                                    wallpaperManager.getCropAndSetWallpaperIntent(bitmap)
-//                                    wallpaperManager.setBitmap(bitmap)
-                            }
-                        }
-                    }) {
-                        Text(text = "Set Wallpaper")
-                    }
                     Button(onClick = {
                         wallpaper?.wallpaperUrl?.let {
                             wallpaper?.wallpaperName?.let { it1 ->

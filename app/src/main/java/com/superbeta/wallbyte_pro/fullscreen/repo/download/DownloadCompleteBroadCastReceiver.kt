@@ -1,10 +1,9 @@
-package com.superbeta.wallbyte_pro.fullscreen.repo.downloader
+package com.superbeta.wallbyte_pro.fullscreen.repo.download
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.widget.Toast
 
 class DownloadCompleteBroadCastReceiver : BroadcastReceiver() {
@@ -18,22 +17,9 @@ class DownloadCompleteBroadCastReceiver : BroadcastReceiver() {
             if (id != -1L) {
                 print("Download with id $id Finished")
                 Toast.makeText(context, "Download Complete", Toast.LENGTH_SHORT).show()
+//                val uri = downloadManager.getUriForDownloadedFile(id)
             }
         }
     }
 
-    private fun getDownloadUri(context: Context, downloadId: Long): Uri? {
-        val query = DownloadManager.Query().apply {
-            setFilterById(downloadId)
-        }
-        val cursor = downloadManager.query(query)
-        if (cursor.moveToFirst()) {
-            val uriIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
-            val uriString = cursor.getString(uriIndex)
-            cursor.close()
-            return Uri.parse(uriString)
-        }
-        cursor.close()
-        return null
-    }
 }

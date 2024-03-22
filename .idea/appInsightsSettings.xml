@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.superbeta.wallbyte_pro" />
+                  <option name="mobileSdkAppId" value="1:592028361654:android:6d12e9264bbde362601717" />
+                  <option name="projectId" value="wallpei" />
+                  <option name="projectNumber" value="592028361654" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

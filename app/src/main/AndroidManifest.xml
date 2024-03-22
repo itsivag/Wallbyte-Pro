@@ -16,9 +16,8 @@
         android:theme="@style/Theme.Emi"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.superbeta.wallbyte_pro.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Emi">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,14 +25,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver
-            android:name=".fullscreen.repo.downloader.DownloadCompleteBroadCastReceiver"
+            android:name="com.superbeta.wallbyte_pro.fullscreen.repo.download.DownloadCompleteBroadCastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
-
         </receiver>
+
+<!--        <receiver-->
+<!--            android:name="com.superbeta.wallbyte_pro.fullscreen.repo.set_wallpaper.SetWallpaperBroadCastReceiver"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />-->
+<!--                <action android:name="android.intent.action.SET_WALLPAPER" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
     </application>
 
 </manifest>

@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.superbeta.emi" />
-                  <option name="mobileSdkAppId" value="1:592028361654:android:f2a023f64c9fbfbd601717" />
-                  <option name="projectId" value="wallpei" />
-                  <option name="projectNumber" value="592028361654" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.superbeta.emi"
+    namespace = "com.superbeta.wallbyte_pro"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.superbeta.emi"
+        applicationId = "com.superbeta.wallbyte_pro"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -97,4 +97,8 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
+//paging
+    val paging_version = "3.2.1"
+    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation("androidx.paging:paging-compose:3.3.0-alpha04")
 }

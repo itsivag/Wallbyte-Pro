@@ -48,6 +48,11 @@ class WallpaperViewModel(
         }
     }
 
+    suspend fun refreshWallpapersList() {
+        _wallpaperState.value = emptyList()
+        _currPage = 0
+        getWallpapers()
+    }
 
     suspend fun getWallpapers() {
         Log.e("page", _currPage.toString())

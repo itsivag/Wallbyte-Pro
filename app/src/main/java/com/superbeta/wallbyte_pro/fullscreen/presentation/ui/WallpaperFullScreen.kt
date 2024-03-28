@@ -29,6 +29,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -106,7 +108,11 @@ fun FullScreenSuccess(
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Black.copy(alpha = 0.2f)
                 ),
-                title = { Text(text = wallpaper?.wallpaperName.toString()) },
+                title = {
+                    Text(
+                        text = wallpaper?.wallpaperName.toString().capitalize(Locale.current)
+                    )
+                },
                 navigationIcon = {
                     IconButton(
                         onClick = { navController.popBackStack() }) {
@@ -148,6 +154,21 @@ fun FullScreenSuccess(
                         Icon(
                             imageVector = ImageVector.vectorResource(R.drawable.wallpaper),
                             contentDescription = "Set Wallpaper"
+                        )
+                    }
+
+
+                    FloatingActionButton(
+                        onClick = {
+                            CoroutineScope(IO).launch {
+                                viewModel.cropAndSetWallpaper()
+                            }
+                        },
+                        modifier = Modifier.padding(8.dp)
+                    ) {
+                        Icon(
+                            imageVector = ImageVector.vectorResource(R.drawable.crop_and_set),
+                            contentDescription = "Crop And Set Wallpaper"
                         )
                     }
                 }

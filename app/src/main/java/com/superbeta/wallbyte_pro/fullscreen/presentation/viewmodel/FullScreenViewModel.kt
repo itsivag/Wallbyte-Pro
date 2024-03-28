@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.superbeta.wallbyte_pro.fullscreen.data.local.FullScreenLocalService
-import com.superbeta.wallbyte_pro.fullscreen.repo.FullScreenRepository
-import com.superbeta.wallbyte_pro.fullscreen.repo.FullScreenRepositoryImpl
+import com.superbeta.wallbyte_pro.fullscreen.repo.fetch_wallpaper.FullScreenRepository
+import com.superbeta.wallbyte_pro.fullscreen.repo.fetch_wallpaper.FullScreenRepositoryImpl
 import com.superbeta.wallbyte_pro.fullscreen.repo.download.AndroidDownloader
+import com.superbeta.wallbyte_pro.fullscreen.repo.set_wallpaper.WallpaperSetType
 import com.superbeta.wallbyte_pro.fullscreen.repo.set_wallpaper.WallpaperSetter
 import com.superbeta.wallbyte_pro.models.WallpaperDataModel
 import com.superbeta.wallbyte_pro.utils.RoomInstance
 import com.superbeta.wallbyte_pro.utils.UiState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -44,10 +44,25 @@ class FullScreenViewModel(
 
     suspend fun setWallpaper() {
         viewModelScope.launch {
-            _wallpaperState.value?.let { wallpaperSetter.setWallpaper(it) }
+            _wallpaperState.value?.let {
+                wallpaperSetter.setWallpaper(
+                    it,
+                    WallpaperSetType.setWallpaper
+                )
+            }
         }
     }
 
+    suspend fun cropAndSetWallpaper() {
+        viewModelScope.launch {
+            _wallpaperState.value?.let {
+                wallpaperSetter.setWallpaper(
+                    it,
+                    WallpaperSetType.cropAndSetWallpaper
+                )
+            }
+        }
+    }
 
     suspend fun downloadWallpaper() {
         viewModelScope.launch {
@@ -73,9 +88,9 @@ class FullScreenViewModel(
                 val db = RoomInstance.getDb(application.applicationContext)
                 val fullScreenRepository = FullScreenRepositoryImpl(FullScreenLocalService(db))
 
-                val wallpaperSetter = WallpaperSetter(application.applicationContext)
+                val wallpaperSetter =
+                    WallpaperSetter(application.applicationContext)
                 val downloader = AndroidDownloader(application.applicationContext)
-
 
                 return FullScreenViewModel(
                     fullScreenRepository,

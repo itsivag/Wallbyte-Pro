@@ -1,4 +1,4 @@
-package com.superbeta.wallbyte_pro.fullscreen.repo
+package com.superbeta.wallbyte_pro.fullscreen.repo.fetch_wallpaper
 
 import com.superbeta.wallbyte_pro.models.WallpaperDataModel
 

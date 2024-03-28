@@ -30,6 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -38,6 +40,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.superbeta.wallbyte_pro.models.WallpaperDataModel
 import com.superbeta.wallbyte_pro.home.presentation.viewmodel.WallpaperViewModel
+import com.superbeta.wallbyte_pro.ui.theme.SusaFamily
 import com.superbeta.wallbyte_pro.utils.OnError
 import com.superbeta.wallbyte_pro.utils.OnLoading
 import com.superbeta.wallbyte_pro.utils.UiState
@@ -57,7 +60,13 @@ fun HomeScreen(
     val context = LocalContext.current
 
     Scaffold(topBar = {
-        TopAppBar(title = { Text(text = "Wallbyte Pro") }, actions = {
+        TopAppBar(title = {
+            Text(
+                text = "Wallbyte Pro",
+                fontFamily = SusaFamily,
+                fontWeight = FontWeight.Bold
+            )
+        }, actions = {
             IconButton(onClick = { isMenuExpanded = !isMenuExpanded }) {
                 Icon(
                     imageVector = Icons.Outlined.MoreVert,

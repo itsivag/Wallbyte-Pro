@@ -1,6 +1,7 @@
 package com.superbeta.wallbyte_pro.fullscreen.presentation.viewmodel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -16,6 +17,7 @@ import com.superbeta.wallbyte_pro.utils.RoomInstance
 import com.superbeta.wallbyte_pro.utils.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FullScreenViewModel(
@@ -43,38 +45,59 @@ class FullScreenViewModel(
     }
 
     suspend fun setWallpaper() {
+        _uiState.value = UiState.Loading
         viewModelScope.launch {
-            _wallpaperState.value?.let {
-                wallpaperSetter.setWallpaper(
-                    it,
-                    WallpaperSetType.setWallpaper
-                )
+            _wallpaperState.value?.let { wallpaper ->
+                wallpaperSetter.setWallpaper(wallpaper, WallpaperSetType.SET_WALLPAPER) { success ->
+                    if (success) {
+                        _uiState.value = UiState.Success
+                    } else {
+                        _uiState.value = UiState.Error("Error setting wallpaper")
+                    }
+                }
             }
         }
     }
 
     suspend fun cropAndSetWallpaper() {
+        _uiState.value = UiState.Loading
+
         viewModelScope.launch {
-            _wallpaperState.value?.let {
+            _wallpaperState.value?.let { wallpaper ->
                 wallpaperSetter.setWallpaper(
-                    it,
-                    WallpaperSetType.cropAndSetWallpaper
-                )
+                    wallpaper,
+                    WallpaperSetType.CROP_AND_SET_WALLPAPER
+                ) { success ->
+                    if (success) {
+                        _uiState.value = UiState.Success
+                    } else {
+                        _uiState.value = UiState.Error("Error setting wallpaper")
+                    }
+                }
             }
         }
     }
 
     suspend fun downloadWallpaper() {
+        _uiState.value = UiState.Loading
+
         viewModelScope.launch {
-            _wallpaperState.value?.wallpaperUrl?.let {
-                _wallpaperState.value?.wallpaperName?.let { it1 ->
-                    downloader.downloadFile(
-                        it, it1
-                    )
+            _wallpaperState.value?.let { wallpaper ->
+                wallpaper.wallpaperUrl?.let {
+                    wallpaper.wallpaperName?.let { it1 ->
+                        downloader.downloadFile(it, it1) { success ->
+                            if (success) {
+                                _uiState.value = UiState.Success
+                            } else {
+                                _uiState.value = UiState.Error("Error downloading wallpaper")
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+
 
     companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
@@ -91,6 +114,7 @@ class FullScreenViewModel(
                 val wallpaperSetter =
                     WallpaperSetter(application.applicationContext)
                 val downloader = AndroidDownloader(application.applicationContext)
+
 
                 return FullScreenViewModel(
                     fullScreenRepository,

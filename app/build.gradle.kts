@@ -14,8 +14,8 @@ android {
         applicationId = "com.superbeta.wallbyte_pro"
         minSdk = 24
         targetSdk = 34
-        versionCode = 3
-        versionName = "bonda_v2"
+        versionCode = 4
+        versionName = "bonda_v4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

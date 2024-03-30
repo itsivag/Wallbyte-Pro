@@ -13,19 +13,25 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.superbeta.wallbyte_pro.models.WallpaperDataModel
+import com.superbeta.wallbyte_pro.utils.UiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
 enum class WallpaperSetType {
-    setWallpaper,
-    cropAndSetWallpaper
+    SET_WALLPAPER,
+    CROP_AND_SET_WALLPAPER
 }
 
 class WallpaperSetter(private val context: Context) {
 
-    fun setWallpaper(wallpaper: WallpaperDataModel, type: WallpaperSetType) {
+    suspend fun setWallpaper(
+        wallpaper: WallpaperDataModel,
+        type: WallpaperSetType,
+        callback: (Boolean) -> Unit
+    ) {
         CoroutineScope(IO).launch {
             val wallpaperManager = WallpaperManager.getInstance(context)
 
@@ -41,16 +47,23 @@ class WallpaperSetter(private val context: Context) {
                     val bitmap = (result as BitmapDrawable).bitmap
 
                     when (type) {
-                        WallpaperSetType.setWallpaper ->
+                        WallpaperSetType.SET_WALLPAPER -> {
                             wallpaperManager.setBitmap(bitmap)
+                            callback(true)
+                            Toast.makeText(context, "Wallpaper Set", Toast.LENGTH_SHORT).show()
+                        }
 
-                        WallpaperSetType.cropAndSetWallpaper ->
-                            cropAndSetWallpaper(bitmap, "test")
+                        WallpaperSetType.CROP_AND_SET_WALLPAPER -> {
+                            cropAndSetWallpaper(bitmap, wallpaper.wallpaperName.toString())
+                            callback(true)
+                        }
                     }
-
                 } catch (e: Exception) {
-                    Log.e("Set Wallpaper", e.toString())
+                    Log.e("Wallpaper Setter", "Error setting wallpaper: $e")
+                    callback(false)
                 }
+            } else {
+                callback(false)
             }
         }
     }

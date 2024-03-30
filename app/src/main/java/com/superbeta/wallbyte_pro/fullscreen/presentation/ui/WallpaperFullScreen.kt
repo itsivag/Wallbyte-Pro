@@ -3,7 +3,6 @@ package com.superbeta.wallbyte_pro.fullscreen.presentation.ui
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -48,14 +47,12 @@ import com.superbeta.wallbyte_pro.utils.OnError
 import com.superbeta.wallbyte_pro.utils.OnLoading
 import com.superbeta.wallbyte_pro.utils.UiState
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WallpaperFullScreen(
     navController: NavHostController,
     wallpaperId: Int,
     viewModel: FullScreenViewModel = viewModel(factory = FullScreenViewModel.Factory)
 ) {
-    val context = LocalContext.current
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val wallpaper by viewModel.wallpaperState.collectAsStateWithLifecycle()
 
@@ -71,15 +68,14 @@ fun WallpaperFullScreen(
             }
         }
         val modifier = Modifier.padding(pd)
-        when (uiState) {
-            is UiState.Error -> OnError(modifier = modifier)
-            UiState.Loading -> OnLoading(modifier = modifier)
-            UiState.Success -> FullScreenSuccess(modifier, wallpaper, navController, viewModel)
+        if (uiState == UiState.Error("")) {
+            OnError(modifier = modifier)
+        } else {
+            FullScreenSuccess(modifier, wallpaper, navController, viewModel, uiState)
         }
     }
-
-
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -87,12 +83,12 @@ fun FullScreenSuccess(
     modifier: Modifier,
     wallpaper: WallpaperDataModel?,
     navController: NavHostController,
-    viewModel: FullScreenViewModel
+    viewModel: FullScreenViewModel,
+    uiState: UiState
 ) {
     Box(
         modifier = modifier,
     ) {
-
         AsyncImage(
             contentScale = ContentScale.Crop,
             model = ImageRequest.Builder(LocalContext.current)
@@ -110,7 +106,8 @@ fun FullScreenSuccess(
                 ),
                 title = {
                     Text(
-                        text = wallpaper?.wallpaperName.toString().capitalize(Locale.current)
+                        text = wallpaper?.wallpaperName.toString().capitalize(Locale.current),
+                        color = Color.White
                     )
                 },
                 navigationIcon = {
@@ -118,7 +115,8 @@ fun FullScreenSuccess(
                         onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "back"
+                            contentDescription = "back",
+                            tint = Color.White
                         )
                     }
                 })
@@ -173,6 +171,10 @@ fun FullScreenSuccess(
                     }
                 }
             }
+        }
+
+        if (uiState == UiState.Loading) {
+            OnLoading(modifier = Modifier)
         }
     }
 }

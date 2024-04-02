@@ -86,9 +86,7 @@ fun FullScreenSuccess(
     viewModel: FullScreenViewModel,
     uiState: UiState
 ) {
-    Box(
-        modifier = modifier,
-    ) {
+    Box(modifier = modifier) {
         AsyncImage(
             contentScale = ContentScale.Crop,
             model = ImageRequest.Builder(LocalContext.current)
@@ -97,8 +95,9 @@ fun FullScreenSuccess(
                 )
                 .crossfade(true)
                 .build(),
-            contentDescription = null
+            contentDescription = wallpaper?.wallpaperName.toString()
         )
+
         Column(modifier = modifier) {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(

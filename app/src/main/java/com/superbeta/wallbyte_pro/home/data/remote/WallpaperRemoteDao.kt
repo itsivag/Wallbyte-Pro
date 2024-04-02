@@ -4,4 +4,5 @@ import com.superbeta.wallbyte_pro.models.WallpaperDataModel
 
 interface WallpaperRemoteDao {
     suspend fun getWallpapersFromRemote(page : Int): List<WallpaperDataModel>
+    suspend fun getWallpaperId() : Int
 }

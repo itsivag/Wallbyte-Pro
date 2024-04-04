@@ -13,6 +13,11 @@ google-services = "4.4.1"
 navigationCompose = "2.7.7"
 supabase-bom = "2.2.2"
 lifecycleRuntimeCompose = "2.7.0"
+devtools-ksp = "1.9.0-1.0.12"
+dagger-hilt = "2.44"
+play-integrity = "1.3.0"
+room_version = "2.6.1"
+coit-kt = "2.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,8 +43,19 @@ firebase-database = { group = "com.google.firebase", name = "firebase-database" 
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 
+#implementation("com.google.android.play:integrity:1.3.0")
+play-integrity = { group = "com.google.android.play", name = "integrity", version.ref = "play-integrity" }
 
+#room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
+
+#coil
+coil-kt = { group = "io.coil-kt", name = "coil-compose", version.ref = "coit-kt" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
+devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }

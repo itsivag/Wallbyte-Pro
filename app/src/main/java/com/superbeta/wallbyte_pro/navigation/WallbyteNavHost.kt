@@ -6,15 +6,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.superbeta.wallbyte_pro.category.CategoryScreen
 import com.superbeta.wallbyte_pro.fullscreen.presentation.ui.WallpaperFullScreen
 import com.superbeta.wallbyte_pro.home.presentation.ui.HomeScreen
 
 @Composable
 fun EmiNavHost(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
+    modifier: Modifier,
     startDestination: String = "home"
 ) {
     NavHost(
@@ -22,9 +22,11 @@ fun EmiNavHost(
         navController = navController,
         startDestination = startDestination
     ) {
+
         composable("home") {
-            HomeScreen(navController)
+            HomeScreen(navController, modifier = modifier)
         }
+
         composable(
             "wallpaperFullscreen/{wallpaperId}",
             arguments = listOf(navArgument("wallpaperId") { type = NavType.IntType })
@@ -36,6 +38,11 @@ fun EmiNavHost(
                 )
             }
         }
+        composable("categories") {
+            CategoryScreen(navController)
+        }
+
     }
 }
+
 

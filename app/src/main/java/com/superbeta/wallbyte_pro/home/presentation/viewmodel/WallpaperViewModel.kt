@@ -2,32 +2,23 @@ package com.superbeta.wallbyte_pro.home.presentation.viewmodel
 
 import android.app.Application
 import android.util.Log
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.superbeta.wallbyte_pro.models.WallpaperDataModel
 import com.superbeta.wallbyte_pro.home.data.local.WallpaperLocalDbService
 import com.superbeta.wallbyte_pro.home.data.remote.WallpaperRemoteDbService
 import com.superbeta.wallbyte_pro.home.repo.WallpaperRepository
 import com.superbeta.wallbyte_pro.home.repo.WallpaperRepositoryImpl
+import com.superbeta.wallbyte_pro.models.WallpaperDataModel
 import com.superbeta.wallbyte_pro.utils.RoomInstance
 import com.superbeta.wallbyte_pro.utils.UiState
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.cache
 import kotlinx.coroutines.launch
 
 class WallpaperViewModel(

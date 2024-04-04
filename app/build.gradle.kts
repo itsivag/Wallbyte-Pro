@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.services)
     kotlin("plugin.serialization") version "1.9.0"
     id("com.google.devtools.ksp")
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -14,8 +15,8 @@ android {
         applicationId = "com.superbeta.wallbyte_pro"
         minSdk = 24
         targetSdk = 34
-        versionCode = 4
-        versionName = "bonda_v4"
+        versionCode = 5
+        versionName = "bonda_v5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -88,19 +89,20 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 
 //coil
-    implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation(libs.coil.kt)
+
 //room
-    val room_version = "2.6.1"
+    implementation(libs.room.runtime)
+    implementation(libs.room.compiler)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
+//play integrity
+    implementation(libs.play.integrity)
 
-//paging
-    val paging_version = "3.2.1"
-    implementation("androidx.paging:paging-runtime:$paging_version")
-    implementation("androidx.paging:paging-compose:3.3.0-alpha04")
+    //hilt
+//    implementation("com.google.dagger:hilt-android:2.48")
+    implementation("com.google.dagger:hilt-android:2.44")
+    ksp("com.google.dagger:hilt-android-compiler:2.44")
 
-    implementation ("com.google.android.play:integrity:1.3.0")
 }

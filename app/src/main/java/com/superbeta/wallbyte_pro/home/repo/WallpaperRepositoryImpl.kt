@@ -30,7 +30,7 @@ class WallpaperRepositoryImpl(
             wallpaperLocalDao.saveWallpapersToDb(remoteList)
         }
 
-        return wallpaperLocalDao.getWallpapersFromDb()
+        return remoteList
     }
 
 }

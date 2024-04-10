@@ -45,6 +45,7 @@ class CategoryFullScreenViewModel(
         Log.e("page", _currPage.toString())
         _wallpaperState.value =
             wallpaperByCategoryRepository.getWallpapersByCategory(_currPage, category)
+
         if (_wallpaperState.value.isNotEmpty()) {
             _uiState.value = UiState.Success
             _currPage++

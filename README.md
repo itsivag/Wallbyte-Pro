@@ -1,4 +1,4 @@
-# Wallbyte Pro - Your Ultimate Dark Wallpaper Companion
+# Wallbyte Pro - Dark Wallpapers
 [Download now](https://play.google.com/store/apps/details?id=com.superbeta.wallbyte_pro)
 
 ## About this App

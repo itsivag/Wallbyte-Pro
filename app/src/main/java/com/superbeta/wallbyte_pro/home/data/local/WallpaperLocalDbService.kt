@@ -12,5 +12,8 @@ class WallpaperLocalDbService(private val db: EmiDatabase) : WallpaperLocalDao {
     override suspend fun getWallpapersFromDb(): List<WallpaperDataModel> =
         db.wallpaperDao().getWallpapersFromDb()
 
+    override suspend fun getWallpapersByCategoryFromDb(category: String): List<WallpaperDataModel> =
+        db.wallpaperDao().getWallpapersByCategoryFromDb(category)
+
 
 }

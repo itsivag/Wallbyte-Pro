@@ -9,6 +9,10 @@ class CategoryViewModel : ViewModel() {
     private val _categoryList = mutableStateOf<List<CategoryModel>>(emptyList())
     val categoryList = _categoryList
 
+    init {
+        getCategories()
+    }
+
     private fun getCategories() {
         viewModelScope.launch {
 

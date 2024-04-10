@@ -60,10 +60,8 @@ fun HomeScreenOnSuccess(
     viewModel: WallpaperViewModel,
 ) {
 
-//    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     LazyVerticalGrid(
-//        modifier = modifier,
         columns = GridCells.Fixed(3),
         contentPadding = PaddingValues(
             start = 4.dp, top = 0.dp, end = 4.dp, bottom = 0.dp

@@ -17,7 +17,20 @@ class WallpaperRepositoryImpl(
         }
 
         return wallpaperLocalDao.getWallpapersFromDb()
-//        return remoteList
+    }
+
+    override suspend fun getWallpapersByCategory(
+        page: Int,
+        category: String
+    ): List<WallpaperDataModel> {
+        val remoteList = wallpaperRemoteDao.getWallpaperByCategoryFromRemote(page, category)
+        val localList = wallpaperLocalDao.getWallpapersByCategoryFromDb(category)
+
+        if (remoteList.firstOrNull() != localList.firstOrNull()) {
+            wallpaperLocalDao.saveWallpapersToDb(remoteList)
+        }
+
+        return wallpaperLocalDao.getWallpapersFromDb()
     }
 
 }

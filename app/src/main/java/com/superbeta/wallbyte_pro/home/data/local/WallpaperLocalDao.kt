@@ -13,4 +13,7 @@ interface WallpaperLocalDao {
 
     @Query("SELECT * FROM wallpaper ORDER BY wallpaperId DESC")
     suspend fun getWallpapersFromDb(): List<WallpaperDataModel>
+
+    @Query("SELECT * FROM wallpaper WHERE wallpaper_category = :category ORDER BY wallpaperId DESC")
+    suspend fun getWallpapersByCategoryFromDb(category: String): List<WallpaperDataModel>
 }

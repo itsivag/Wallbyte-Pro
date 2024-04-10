@@ -35,11 +35,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.superbeta.wallbyte_pro.navigation.EmiNavHost
 import com.superbeta.wallbyte_pro.ui.theme.EmiTheme
 import com.superbeta.wallbyte_pro.ui.theme.SusaFamily
-import dagger.hilt.android.HiltAndroidApp
 
 class MainActivity : ComponentActivity() {
     data class BottomBarItem(
@@ -69,53 +69,84 @@ class MainActivity : ComponentActivity() {
                 var isMenuExpanded by remember { mutableStateOf(false) }
                 val context = LocalContext.current
 
+
+                val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+                val topBarState = rememberSaveable { (mutableStateOf(true)) }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
+
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+                    when (navBackStackEntry?.destination?.route) {
+                        "home" -> {
+                            bottomBarState.value = true
+                            topBarState.value = true
+                        }
+
+                        "categories" -> {
+                            bottomBarState.value = true
+                            topBarState.value = true
+                        }
+
+                        else -> {
+                            bottomBarState.value = false
+                            topBarState.value = false
+                        }
+                    }
                     Scaffold(
                         topBar = {
-                            TopAppBar(title = {
-                                Text(
-                                    text = "Wallbyte Pro",
-                                    fontFamily = SusaFamily,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }, actions = {
-                                IconButton(onClick = { isMenuExpanded = !isMenuExpanded }) {
-                                    Icon(
-                                        imageVector = Icons.Outlined.MoreVert,
-                                        contentDescription = "Menu"
-                                    )
-                                }
+                            if (topBarState.value)
+                                TopAppBar(
+                                    title = {
+                                        Text(
+                                            text = "Wallbyte Pro",
+                                            fontFamily = SusaFamily,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    },
+                                    actions = {
+                                        IconButton(onClick = { isMenuExpanded = !isMenuExpanded }) {
+                                            Icon(
+                                                imageVector = Icons.Outlined.MoreVert,
+                                                contentDescription = "Menu"
+                                            )
+                                        }
 
-                                DropdownMenu(expanded = isMenuExpanded,
-                                    onDismissRequest = { isMenuExpanded = false }) {
+                                        DropdownMenu(expanded = isMenuExpanded,
+                                            onDismissRequest = { isMenuExpanded = false }) {
 //                                    DropdownMenuItem(text = { Text("Refresh") }, onClick = {
 //                                        CoroutineScope(Dispatchers.IO).launch {
 //                                            viewModel.refreshWallpapersList()
 //                                        }
 //                                    })
-                                    DropdownMenuItem(text = { Text("Share") }, onClick = {
-                                        val sendIntent: Intent = Intent().apply {
-                                            action = Intent.ACTION_SEND
-                                            putExtra(
-                                                Intent.EXTRA_TEXT,
-                                                "https://play.google.com/store/apps/details?id=com.superbeta.wallbyte_pro"
-                                            )
-                                            type = "text/html"
+                                            DropdownMenuItem(text = { Text("Share") }, onClick = {
+                                                val sendIntent: Intent = Intent().apply {
+                                                    action = Intent.ACTION_SEND
+                                                    putExtra(
+                                                        Intent.EXTRA_TEXT,
+                                                        "https://play.google.com/store/apps/details?id=com.superbeta.wallbyte_pro"
+                                                    )
+                                                    type = "text/html"
+                                                }
+
+                                                val shareIntent = Intent.createChooser(
+                                                    sendIntent, "Share Wallbyte Pro with Friends❤️"
+                                                )
+                                                context.startActivity(shareIntent)
+                                            })
                                         }
-
-                                        val shareIntent = Intent.createChooser(
-                                            sendIntent, "Share Wallbyte Pro with Friends❤️"
-                                        )
-                                        context.startActivity(shareIntent)
-                                    })
-                                }
-                            })
+                                    },
+                                )
 
 
-                        }, bottomBar = { TabView(tabBarItems, navController) }) {
+                        }, bottomBar = {
+
+                            if (bottomBarState.value)
+                                TabView(tabBarItems, navController)
+                        }) {
                         EmiNavHost(navController = navController, modifier = Modifier.padding(it))
                     }
                 }

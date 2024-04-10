@@ -37,4 +37,27 @@ class WallpaperRemoteDbService : WallpaperRemoteDao {
             600
         }
 
+    override suspend fun getWallpaperByCategoryFromRemote(
+        page: Int,
+        category: String
+    ): List<WallpaperDataModel> {
+        val id = getWallpaperId()
+
+        return try {
+            supabase.from("wallpaper").select()
+            {
+                filter {
+                    lte("id", id - page * 21)
+                    eq("wallpapercategory", category)
+                }
+                limit(21)
+                order(column = "id", order = Order.DESCENDING)
+            }.decodeList<WallpaperDataModel>()
+
+        } catch (e: Exception) {
+            Log.e("Supabase Exception", e.toString())
+            emptyList()
+        }
+    }
+
 }

@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.google.services)
     kotlin("plugin.serialization") version "1.9.0"
     id("com.google.devtools.ksp")
-    alias(libs.plugins.dagger.hilt)
+//    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -92,17 +92,19 @@ dependencies {
     implementation(libs.coil.kt)
 
 //room
-    implementation(libs.room.runtime)
-    implementation(libs.room.compiler)
-    implementation(libs.room.ktx)
-    ksp(libs.room.compiler)
+//    implementation(libs.room.runtime)
+//    implementation(libs.room.compiler)
+//    implementation(libs.room.ktx)
+//    ksp(libs.room.compiler)
 
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
 //play integrity
     implementation(libs.play.integrity)
 
-    //hilt
-//    implementation("com.google.dagger:hilt-android:2.48")
-    implementation("com.google.dagger:hilt-android:2.44")
-    ksp("com.google.dagger:hilt-android-compiler:2.44")
 
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -80,8 +81,8 @@ fun HomeScreenOnSuccess(
                         viewModel.getWallpapers()
                     }
                 }
-//                if (uiState == UiState.Loading) {
-//                    OnLoading(Modifier)
+//                if (viewModel.uiState.value == UiState.Loading) {
+//                    CircularProgressIndicator()
 //                }
             }
         }

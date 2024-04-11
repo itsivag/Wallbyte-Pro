@@ -145,7 +145,10 @@ class MainActivity : ComponentActivity() {
                         }, bottomBar = {
 
                             if (bottomBarState.value)
-                                TabView(tabBarItems, navController)
+                                TabView(
+                                    tabBarItems,
+                                    navController,
+                                    tabBarItems.indexOfFirst { it.title == navBackStackEntry?.destination?.route })
                         }) {
                         EmiNavHost(navController = navController, modifier = Modifier.padding(it))
                     }
@@ -157,9 +160,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun TabView(bottomBarItems: List<MainActivity.BottomBarItem>, navController: NavController) {
+fun TabView(
+    bottomBarItems: List<MainActivity.BottomBarItem>,
+    navController: NavController,
+    initialSelectedIndex: Int
+) {
+
     var selectedTabIndex by rememberSaveable {
-        mutableIntStateOf(0)
+        mutableIntStateOf(initialSelectedIndex) // Initialize selectedTabIndex with the provided initial index
     }
 
     NavigationBar {

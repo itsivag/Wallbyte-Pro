@@ -1,5 +1,5 @@
 # Wallbyte Pro - Dark Wallpapers
-[Download now](https://play.google.com/store/apps/details?id=com.superbeta.wallbyte_pro)
+![ss_1.png](https://github.com/itsivag/Wallbyte-Pro/blob/master/ss_1.png)
 
 ## About this App
 

@@ -3,7 +3,7 @@
 
 ## About this App
 
-Wallbyte Pro is a sophisticated dark wallpaper application, meticulously crafted to provide users with an exceptional dark-themed wallpaper experience. Built upon the principles of clean architecture and leveraging advanced technologies like RoomDB, Retrofit, Coil, and Jetpack Compose, Wallbyte Pro offers developers a glimpse into the realm of modern Android app development.
+Wallbyte Pro is a dark wallpaper application, crafted to provide users with an exceptional dark-themed wallpaper experience. Built upon the principles of clean architecture and leveraging advanced technologies like RoomDB, Retrofit, Coil, and Jetpack Compose, Wallbyte Pro offers developers a glimpse into the realm of modern Android app development.
 
 ### Key Features:
 
